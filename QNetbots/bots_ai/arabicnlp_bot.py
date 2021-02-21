@@ -28,10 +28,10 @@ class ArabicBot(Bot):
                 res = self.arabic_nlp.get_properties(text)
                 room.send_html(F"{event['sender']} {ArabicBot.greetings['dear']}: {res}")
             else:
-                    room.send_text(F"{event['sender']} {ArabicBot.greetings['dear']}: {event['not-recognized']}"
+                    room.send_text(F"{event['sender']} {ArabicBot.greetings['dear']}: {ArabicBot.greetings['not-recognized']}"
                            F"\n {ArabicBot.greetings['pattern']}")
         except:
-            room.send_text(F"{event['sender']} {ArabicBot.greetings['dear']}: {event['not-recognized']}"
+            room.send_text(F"{event['sender']} {ArabicBot.greetings['dear']}: {ArabicBot.greetings['not-recognized']}"
                            F"\n {ArabicBot.greetings['pattern']}")
 
 
