@@ -11,7 +11,7 @@ class ArabicBot(Bot):
                  'pattern':('@arabi@erab@ جمله '+'@arabi@sarf@ عبارت ')}
 
     def __init__(self,USERNAME,PASSWORD,SERVER):
-        super.__init__(USERNAME,PASSWORD,SERVER)
+        super(ArabicBot, self).__init__(USERNAME,PASSWORD,SERVER)
         self.arabic_nlp = ArabicNLP()
 
     def process_command(self, room, event):
