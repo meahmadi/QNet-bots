@@ -3,8 +3,8 @@ Defines a matrix bot handler that uses regex to determine if message should be h
 """
 import re
 import os
-os.path.dirname(os.path.abspath(__file__+'/../../'))
-from QNetbots.matrix_bot_api.mhandler import MHandler
+os.path.dirname(os.path.abspath(__file__)+'/../../')
+from QNetbots.core_bot_api.mhandler import MHandler
 
 
 class MRegexHandler(MHandler):

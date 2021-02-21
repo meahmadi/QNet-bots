@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-os.path.dirname(os.path.abspath(__file__+'/../../'))
+os.path.dirname(os.path.abspath(__file__)+'/../../')
 
 from QNetbots.core_bot_api.bot import Bot
 from QNetbots.nlp.arabic_nlp import ArabicNLP

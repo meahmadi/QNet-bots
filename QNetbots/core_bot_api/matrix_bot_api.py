@@ -1,10 +1,8 @@
 import os
-os.path.dirname(os.path.abspath(__file__+'/../../'))
-
 import traceback
 import re
-from QNetbots.matrix_client.client import MatrixClient
-from QNetbots.matrix_client.api import MatrixRequestError
+from matrix_client.client import MatrixClient
+from matrix_client.api import MatrixRequestError
 
 
 class MatrixBotAPI:

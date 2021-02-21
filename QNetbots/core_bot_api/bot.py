@@ -1,6 +1,5 @@
 import os
-os.path.dirname(os.path.abspath(__file__+'/../../'))
-
+os.path.dirname(os.path.abspath(__file__)+'/../../')
 from QNetbots.core_bot_api.matrix_bot_api import MatrixBotAPI
 from QNetbots.core_bot_api.mregex_handler import MRegexHandler
 from QNetbots.core_bot_api.mcommand_handler import MCommandHandler
