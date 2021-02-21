@@ -7,7 +7,7 @@ from QNetbots.core_bot_api.bot import Bot
 from QNetbots.nlp.arabic_nlp import ArabicNLP
 
 class ArabicBot(Bot):
-    greetings = {'dear': 'عزیز', 'not-recoged':'پیام شما مفهوم نبود، لطفا از الگوهای زیر استفاده کنید:',
+    greetings = {'dear': 'عزیز', 'not-recognized':'پیام شما مفهوم نبود، لطفا از الگوهای زیر استفاده کنید:',
                  'pattern':('@arabi@erab@ جمله '+'@arabi@sarf@ عبارت ')}
 
     def __init__(self,USERNAME,PASSWORD,SERVER):
