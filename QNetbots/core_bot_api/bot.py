@@ -14,7 +14,7 @@ class Bot(object):
         self.bot.add_handler(handler)
 
     def start_polling(self):
-        self.start_polling()
+        self.bot.start_polling()
 
     def add_handlers(self, handlers):
         for handler in handlers:
