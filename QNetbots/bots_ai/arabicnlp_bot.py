@@ -26,12 +26,12 @@ class ArabicBot(Bot):
 
             elif command == 'sarf':
                 res = self.arabic_nlp.get_properties(text)
-                room.send_text(F"{event['sender']} {ArabicBot.greetings['dear']}: {res}")
+                room.send_html(F"{event['sender']} {ArabicBot.greetings['dear']}: {res}")
             else:
-                room.send_text(F"{event['sender']} {ArabicBot.greetings['dear']}: {event['not-recoged']}"
+                    room.send_text(F"{event['sender']} {ArabicBot.greetings['dear']}: {event['not-recognized']}"
                            F"\n {ArabicBot.greetings['pattern']}")
         except:
-            room.send_text(F"{event['sender']} {ArabicBot.greetings['dear']}: {event['not-recoged']}"
+            room.send_text(F"{event['sender']} {ArabicBot.greetings['dear']}: {event['not-recognized']}"
                            F"\n {ArabicBot.greetings['pattern']}")
 
 

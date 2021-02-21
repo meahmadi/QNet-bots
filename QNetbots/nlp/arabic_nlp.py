@@ -2,6 +2,8 @@ from camel_tools.tokenizers.word import simple_word_tokenize
 from camel_tools.disambig.mle import MLEDisambiguator
 from camel_tools.morphology.database import MorphologyDB
 from camel_tools.morphology.analyzer import Analyzer
+import pandas as pd
+
 
 
 class ArabicNLP(object):
@@ -27,4 +29,5 @@ class ArabicNLP(object):
                 if k in show_keys:
                     temp[show_keys[k]]=v
             results.append(temp)
-        return results
+        df = pd.DataFrame(results)
+        return df.to_html()
