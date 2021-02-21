@@ -20,8 +20,8 @@ class ArabicNLP(object):
         return diacritized
 
     def get_properties(self, word):
-        show_keys = {'diac':'کلمه','lex':'ریشه','d3tok':'تجزیه','gen':'جنس','num':'عدد','stemgloss':'معنی'}
-        map = {'m':'مذک','f':'مونت','s':'مفرد','p':'جمع'}
+        show_keys = {'diac':'کلمه','per':'شخص','lex':'ریشه','d3tok':'تجزیه','gen':'جنس','num':'عدد','stemgloss':'معنی'}
+        map = {'m':'مذکر','f':'مونت','s':'مفرد','p':'جمع'}
         analyses = self.analyzer.analyze(word)
         results = []
         for analysis in analyses:
