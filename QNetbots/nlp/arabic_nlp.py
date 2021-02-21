@@ -30,4 +30,4 @@ class ArabicNLP(object):
                     temp[show_keys[k]]=v
             results.append(temp)
         df = pd.DataFrame(results)
-        return df.to_html()
+        return df.to_html(index=False)
