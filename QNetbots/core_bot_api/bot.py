@@ -5,8 +5,8 @@ from core_bot_api.mcommand_handler import MCommandHandler
 
 
 class Bot(object):
-    def __init__(self, config):
-        self.bot = MatrixBotAPI(config['USERNAME'], config['PASSWORD'], config['SERVER'])
+    def __init__(self, USERNAME,PASSWORD,SERVER):
+        self.bot = MatrixBotAPI(USERNAME,PASSWORD,SERVER)
 
     def add_handlers(self, handlers):
         for handler in handlers:
