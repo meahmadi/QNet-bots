@@ -20,14 +20,15 @@ class ArabicNLP(object):
         return diacritized
 
     def get_properties(self, word):
-        show_keys = {'diac':'اعراب','lex':'ریشه','d3tok':'تجزیه','gen':'جنس','num':'عدد','stemgloss':'معنی'}
+        show_keys = {'diac':'کلمه','lex':'ریشه','d3tok':'تجزیه','gen':'جنس','num':'عدد','stemgloss':'معنی'}
+        map = {'m':'مذک','f':'مونت','s':'مفرد','p':'جمع'}
         analyses = self.analyzer.analyze(word)
         results = []
         for analysis in analyses:
             temp = dict()
             for k,v in analysis.items():
                 if k in show_keys:
-                    temp[show_keys[k]]=v
+                    temp[show_keys[k]]=map[v] if v in map else v
             results.append(temp)
         df = pd.DataFrame(results)
         return df.to_html(index=False)
