@@ -10,6 +10,9 @@ class Bot(object):
     def __init__(self, USERNAME,PASSWORD,SERVER):
         self.bot = MatrixBotAPI(USERNAME,PASSWORD,SERVER)
 
+    def add_handler(self, handler):
+        self.bot.add_handler(handler)
+
     def add_handlers(self, handlers):
         for handler in handlers:
             self.bot.add_handler(handler)
