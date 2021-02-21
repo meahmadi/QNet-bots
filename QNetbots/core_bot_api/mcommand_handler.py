@@ -2,10 +2,10 @@
 Defines a matrix bot handler for commands
 """
 import os
-os.path.dirname(os.path.abspath(__file__+'/../../'))
+os.path.dirname(os.path.abspath(__file__)+'/../../')
 import re
 
-from QNetbots.matrix_bot_api.mhandler import MHandler
+from QNetbots.core_bot_api.mhandler import MHandler
 
 
 class MCommandHandler(MHandler):
