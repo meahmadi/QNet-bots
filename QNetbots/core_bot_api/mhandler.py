@@ -1,7 +1,8 @@
 """
 Defines a Matrix bot message handler
 """
-
+import os
+os.path.dirname(os.path.abspath(__file__+'/../../'))
 
 class MHandler(object):
     # test_callback - function that takes a room and event and returns a boolean

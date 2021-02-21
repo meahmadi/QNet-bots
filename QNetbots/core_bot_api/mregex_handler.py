@@ -2,8 +2,9 @@
 Defines a matrix bot handler that uses regex to determine if message should be handled
 """
 import re
-
-from matrix_bot_api.mhandler import MHandler
+import os
+os.path.dirname(os.path.abspath(__file__+'/../../'))
+from QNetbots.matrix_bot_api.mhandler import MHandler
 
 
 class MRegexHandler(MHandler):
