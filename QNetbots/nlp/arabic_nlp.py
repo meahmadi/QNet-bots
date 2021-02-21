@@ -13,7 +13,7 @@ class ArabicNLP(object):
 
     def get_diacratics(self, sentence):
         sentence = simple_word_tokenize(sentence)
-        disambig = self.mle.disambiguate(sentence)
+        disambig = self.mle_dis.disambiguate(sentence)
         diacritized =' '.join([d.analyses[0].analysis['diac'] for d in disambig])
         return diacritized
 
