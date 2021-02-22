@@ -16,7 +16,7 @@ class ArabicBot(Bot):
         self.arabic_nlp = ArabicNLP()
 
         # Add arabic regex handler
-        arabic_handler = MRegexHandler("@عربی", self.process_command())
+        arabic_handler = MRegexHandler("@عربی", self.process_command)
         self.add_handler(arabic_handler)
 
     def run(self):
