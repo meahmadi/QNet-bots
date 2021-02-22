@@ -3,6 +3,8 @@ from camel_tools.disambig.mle import MLEDisambiguator
 from camel_tools.morphology.database import MorphologyDB
 from camel_tools.morphology.analyzer import Analyzer
 import pandas as pd
+from camel_tools.utils.normalize import normalize_alef_ar
+
 
 
 
@@ -12,6 +14,9 @@ class ArabicNLP(object):
         self.mle_dis = MLEDisambiguator.pretrained()
         self.db = MorphologyDB.builtin_db()
         self.analyzer = Analyzer(self.db)
+
+    def get_normal_alef(self,text):
+        return normalize_alef_ar(text)
 
     def get_diacratics(self, sentence):
         sentence = simple_word_tokenize(sentence)
