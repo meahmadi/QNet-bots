@@ -37,15 +37,18 @@ class LiveStreamBot(Bot):
         command = event['content']['body'].split('#')[-2].strip()
 
 
-        if command=='نو':
-            password = LiveStreamBot.get_password()
-            table = pd.DataFrame({'لینک':F'https://quranic.network/{password}', 'نام ضبط':F'{text}','رمز':F"{password}"}).to_html(index=False)
-            room.send_html(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {table}")
-            subprocess.call(['sudo', 'bash', '/stream/run.sh',password, text, '&'])
+        try:
+            if command=='نو':
+                password = LiveStreamBot.get_password()
+                pd.DataFrame({'لینک':[F'https://quranic.network/{password}'], 'نام ضبط':[F'{text}'],'رمز':[F"{password}"]}).to_html(index=False)                room.send_html(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {table}")
+                subprocess.call(['sudo', 'bash', '/stream/run.sh',password, text, '&'])
 
-        else:
+            else:
+                room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
+                       F"\n {LiveStreamBot.greetings['pattern']}")
+        except:
             room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
-                   F"\n {LiveStreamBot.greetings['pattern']}")
+                           F"\n {LiveStreamBot.greetings['pattern']}")
 
 
 
