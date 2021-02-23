@@ -43,7 +43,7 @@ class LiveStreamBot(Bot):
             room.send_html(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {table}")
             room.send_text(F"{event['sender']} لطفا ۷ ثانیه صبر کنید ")
             time.sleep(5)
-            subprocess.subprocess.Popen(['sudo', 'bash', '/stream/run.sh',password, text])
+            subprocess.Popen(['sudo', 'bash', '/stream/run.sh',password, text])
 
         else:
             room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
