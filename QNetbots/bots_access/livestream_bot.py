@@ -22,7 +22,7 @@ class LiveStreamBot(Bot):
     @staticmethod
     def get_password(length=10):
         # choose from all lowercase letter
-        letters = string.ascii_lowercase + '0123456789' + string.ascii_uppercases
+        letters = string.ascii_lowercase + '0123456789' + string.ascii_uppercase
         password = ''.join(random.choice(letters) for i in range(length))
         return password
 
@@ -33,13 +33,17 @@ class LiveStreamBot(Bot):
 
         command = event['content']['body'].split('#')[-1].strip()
         print(command,command=='نو')
-        if command=='نو':
-            password = LiveStreamBot.get_password()
-            room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {password}")
+        try:
+            if command=='نو':
+                password = LiveStreamBot.get_password()
+                room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {password}")
 
-        else:
+            else:
+                room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
+                       F"\n {LiveStreamBot.greetings['pattern']}")
+        except:
             room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
-                   F"\n {LiveStreamBot.greetings['pattern']}")
+                           F"\n {LiveStreamBot.greetings['pattern']}")
 
 
 
