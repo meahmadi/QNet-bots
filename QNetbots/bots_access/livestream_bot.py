@@ -33,17 +33,13 @@ class LiveStreamBot(Bot):
 
         command = event['content']['body'].split('#')[-1].strip()
         print(command,command=='نو')
-        try:
-            if command=='نو':
-                password = LiveStreamBot.get_password()
-                room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {password}")
+        if command=='نو':
+            password = LiveStreamBot.get_password()
+            room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {password}")
 
-            else:
-                room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
-                       F"\n {LiveStreamBot.greetings['pattern']}")
-        except:
+        else:
             room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
-                           F"\n {LiveStreamBot.greetings['pattern']}")
+                   F"\n {LiveStreamBot.greetings['pattern']}")
 
 
 
