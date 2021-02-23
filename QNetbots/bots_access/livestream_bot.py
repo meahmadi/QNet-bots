@@ -12,7 +12,7 @@ import pandas as pd
 import time
 class LiveStreamBot(Bot):
     greetings = {'dear': 'کاربر عزیز', 'not-recognized':'پیام شما مفهوم نبود، لطفا از الگوهای زیر استفاده کنید:',
-                 'pattern':('@پخش#حجم '+'@پخش#نو ')}
+                 'pattern':('@پخش#حذف#نام‌فایل '+'@پخش#ارسال#نام‌فایل '+'@پخش#نو#نام‌فایل ')}
 
     def __init__(self, username, password, server):
         super(LiveStreamBot, self).__init__(username, password, server)
