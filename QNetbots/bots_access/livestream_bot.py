@@ -9,7 +9,7 @@ import random
 import string
 import subprocess
 import pandas as pd
-
+import time
 class LiveStreamBot(Bot):
     greetings = {'dear': 'کاربر عزیز', 'not-recognized':'پیام شما مفهوم نبود، لطفا از الگوهای زیر استفاده کنید:',
                  'pattern':('@پخش#حجم '+'@پخش#نو ')}
@@ -37,19 +37,16 @@ class LiveStreamBot(Bot):
         command = event['content']['body'].split('#')[-2].strip()
 
 
-        try:
-            if command=='نو':
-                password = LiveStreamBot.get_password()
-                pd.DataFrame({'لینک':[F'https://quranic.network/{password}'], 'نام ضبط':[F'{text}'],'رمز':[F"{password}"]}).to_html(index=False)
-                room.send_html(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {table}")
-                subprocess.call(['sudo', 'bash', '/stream/run.sh',password, text, '&'])
+        if command=='نو':
+            password = LiveStreamBot.get_password()
+            pd.DataFrame({'لینک':[F'https://quranic.network/{password}'], 'نام ضبط':[F'{text}'],'رمز':[F"{password}"]}).to_html(index=False)
+            room.send_html(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {table}")
+            time.sleep(5)
+            subprocess.call(['sudo', 'bash', '/stream/run.sh',password, text, '&'])
 
-            else:
-                room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
-                       F"\n {LiveStreamBot.greetings['pattern']}")
-        except:
+        else:
             room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
-                           F"\n {LiveStreamBot.greetings['pattern']}")
+                   F"\n {LiveStreamBot.greetings['pattern']}")
 
 
 
