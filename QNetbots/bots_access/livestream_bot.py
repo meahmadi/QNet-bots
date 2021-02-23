@@ -42,9 +42,10 @@ class LiveStreamBot(Bot):
         try:
             if command=='نو':
                 password = LiveStreamBot.get_password()
-                subprocess.call(['sudo', 'bash', '/stream/run.sh',password, text])
                 table = pd.DataFrame({'لینک':F'https://quranic.network/{password}', 'نام ضبط':F'{text}','رمز':F"{password}"}).to_html(index=False)
                 room.send_html(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {table}")
+                subprocess.call(['sudo', 'bash', '/stream/run.sh',password, text, '&'])
+
             else:
                 room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
                        F"\n {LiveStreamBot.greetings['pattern']}")
