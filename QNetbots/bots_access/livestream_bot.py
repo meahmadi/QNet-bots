@@ -39,8 +39,9 @@ class LiveStreamBot(Bot):
 
         if command=='نو':
             password = LiveStreamBot.get_password()
-            pd.DataFrame({'لینک':[F'https://quranic.network/{password}'], 'نام ضبط':[F'{text}'],'رمز':[F"{password}"]}).to_html(index=False)
+            table = pd.DataFrame({'لینک':[F'https://quranic.network/{password}'], 'نام ضبط':[F'{text}'],'رمز':[F"{password}"]}).to_html(index=False)
             room.send_html(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {table}")
+            room.send_text(F"{event['sender']} لطفا ۷ ثانیه صبر کنید ")
             time.sleep(5)
             subprocess.call(['sudo', 'bash', '/stream/run.sh',password, text, '&'])
 
