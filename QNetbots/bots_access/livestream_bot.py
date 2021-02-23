@@ -7,6 +7,8 @@ from QNetbots.core_bot_api.bot import Bot
 from QNetbots.core_bot_api.mregex_handler import MRegexHandler
 import random
 import string
+import subprocess
+import pandas as pd
 
 class LiveStreamBot(Bot):
     greetings = {'dear': 'کاربر عزیز', 'not-recognized':'پیام شما مفهوم نبود، لطفا از الگوهای زیر استفاده کنید:',
@@ -31,13 +33,17 @@ class LiveStreamBot(Bot):
 
     def process_command(self, room, event):
 
-        command = event['content']['body'].split('#')[-1].strip()
-        print(command,command=='نو')
+        text = event['content']['body'].split('#')[-1].strip()
+        command = event['content']['body'].split('#')[-2].strip()
+
+
+
         try:
             if command=='نو':
                 password = LiveStreamBot.get_password()
-                room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {password}")
-
+                subprocess.call(['sudo', 'bash', '/stream/run.sh',password, text])
+                table = pd.DataFrame({'لینک':F'https://quranic.network/{password}', 'نام ضبط':F'{text}','رمز':F"{password}"}).to_html(index=False)
+                room.send_html(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {table}")
             else:
                 room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
                        F"\n {LiveStreamBot.greetings['pattern']}")
