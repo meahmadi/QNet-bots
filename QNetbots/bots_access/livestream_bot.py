@@ -36,7 +36,8 @@ class LiveStreamBot(Bot):
         text = event['content']['body'].split('#')[-1].strip()
         command = event['content']['body'].split('#')[-2].strip()
 
-
+        print('text', text)
+        print('command', command)
 
         try:
             if command=='نو':
