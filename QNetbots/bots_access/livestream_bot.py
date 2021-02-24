@@ -12,13 +12,13 @@ import pandas as pd
 import time
 class LiveStreamBot(Bot):
     greetings = {'dear': 'کاربر عزیز', 'not-recognized':'پیام شما مفهوم نبود، لطفا از الگوهای زیر استفاده کنید:',
-                 'pattern':('@پخش#حذف#نام‌فایل '+'@پخش#ارسال#نام‌فایل '+'@پخش#نو#نام‌فایل ')}
+                 'pattern':('@پخش:حذف:نام‌فایل '+'!پخش:ارسال:نام‌فایل '+'!پخش:نو:نام‌فایل ')}
 
     def __init__(self, username, password, server):
         super(LiveStreamBot, self).__init__(username, password, server)
 
         # Add arabic regex handler
-        live_handler = MRegexHandler("@پخش", self.process_command)
+        live_handler = MRegexHandler("!پخش", self.process_command)
         self.add_handler(live_handler)
 
     @staticmethod
@@ -33,8 +33,8 @@ class LiveStreamBot(Bot):
 
     def process_command(self, room, event):
 
-        text = event['content']['body'].split('#')[-1].strip()
-        command = event['content']['body'].split('#')[-2].strip()
+        text = event['content']['body'].split(':')[-1].strip()
+        command = event['content']['body'].split(':')[-2].strip()
 
 
         if command=='نو':
