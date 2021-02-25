@@ -61,7 +61,10 @@ class LiveStreamBot(Bot):
             subprocess.call(['sudo', 'bash', '/stream/convert.sh',code])
 
         elif command=='حذف':
-            subprocess.call(['sudo', 'bash', '/stream/moverec.sh'])
+            if text!=''
+                subprocess.call(['sudo', 'bash', '/stream/moverec.sh'])
+            else:
+                subprocess.call(['sudo', 'bash', '/stream/moverec_arg.sh',text])
         else:
             room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
                    F"\n {LiveStreamBot.greetings['pattern']}")
