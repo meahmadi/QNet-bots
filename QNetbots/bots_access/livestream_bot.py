@@ -2,7 +2,7 @@
 
 import os
 os.path.dirname(os.path.abspath(__file__)+'/../../')
-
+import jdatetime
 from QNetbots.core_bot_api.bot import Bot
 from QNetbots.core_bot_api.mregex_handler import MRegexHandler
 import random
@@ -12,7 +12,7 @@ import pandas as pd
 import time
 class LiveStreamBot(Bot):
     greetings = {'dear': 'کاربر عزیز', 'not-recognized':'پیام شما مفهوم نبود، لطفا از الگوهای زیر استفاده کنید:',
-                 'pattern':('@پخش:حذف:نام‌فایل '+'!پخش:ارسال:نام‌فایل '+'!پخش:نو:نام‌فایل ')}
+                 'pattern':('!پخش:حذف(:نام‌فایل)'+'!پخش:بفرست '+'!پخش:نو:نام‌فایل ')}
 
     def __init__(self, username, password, server):
         super(LiveStreamBot, self).__init__(username, password, server)
@@ -33,8 +33,8 @@ class LiveStreamBot(Bot):
 
     def process_command(self, room, event):
 
-        text = event['content']['body'].split(':')[-1].strip()
-        command = event['content']['body'].split(':')[-2].strip()
+        text = event['content']['body'].split(':')[2].strip()
+        command = event['content']['body'].split(':')[1].strip()
 
 
         if command=='نو':
@@ -45,8 +45,17 @@ class LiveStreamBot(Bot):
             time.sleep(5)
             subprocess.call(['sudo', 'bash', '/stream/run.sh',password, text])
 
+        elif command=='بفرست':
+            code = LiveStreamBot.get_password()
+            code=F"{jdatetime.datetime.now().strftime('%Y-%m-%d-%H-%M')}-{code}"
+            table = pd.DataFrame({'لینک':[F'https://abraar.info/jalasat/{code}/']}).to_html(index=False)
+            room.send_html(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {table}")
+            room.send_text(F"{event['sender']} پروسه ی تبدیل و ارسال فایلها به سرور آغاز شده است ")
+            time.sleep(5)
+            subprocess.call(['sudo', 'bash', '/stream/convert.sh',code])
+
         elif command=='حذف':
-            subprocess.call(['sudo', 'rm', '-r', F'/home/element/recordings/{text}*', text])
+            subprocess.call(['sudo', 'mv', '-r', F'/home/element/recordings/{text}*', F'/home/element/previous_rec/'])
         else:
             room.send_text(F"{event['sender']} {LiveStreamBot.greetings['dear']}: {LiveStreamBot.greetings['not-recognized']}"
                    F"\n {LiveStreamBot.greetings['pattern']}")
