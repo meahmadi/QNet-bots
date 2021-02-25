@@ -61,7 +61,7 @@ class LiveStreamBot(Bot):
             subprocess.call(['sudo', 'bash', '/stream/convert.sh',code])
 
         elif command=='حذف':
-            if text!=''
+            if text.strip()=='':
                 subprocess.call(['sudo', 'bash', '/stream/moverec.sh'])
             else:
                 subprocess.call(['sudo', 'bash', '/stream/moverec_arg.sh',text])
