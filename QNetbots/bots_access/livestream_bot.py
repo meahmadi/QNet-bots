@@ -10,6 +10,7 @@ import string
 import subprocess
 import pandas as pd
 import time
+
 class LiveStreamBot(Bot):
     greetings = {'dear': 'کاربر عزیز', 'not-recognized':'پیام شما مفهوم نبود، لطفا از الگوهای زیر استفاده کنید:',
                  'pattern':('!پخش:حذف(:نام‌فایل)'+'!پخش:بفرست '+'!پخش:نو:نام‌فایل ')}
@@ -42,7 +43,8 @@ class LiveStreamBot(Bot):
             text = event['content']['body'].split(':')[2].strip()
         except:
             text = ''
-
+        print(text, 'text')
+        print(command,'command')
         if command=='نو':
             password = LiveStreamBot.get_password()
             table = pd.DataFrame({'لینک':[F'https://quranic.network/{password}'], 'نام ضبط':[F'{text}'],'رمز':[F"{password}"]}).to_html(index=False)
