@@ -33,9 +33,15 @@ class LiveStreamBot(Bot):
 
     def process_command(self, room, event):
 
-        text = event['content']['body'].split(':')[2].strip()
-        command = event['content']['body'].split(':')[1].strip()
+        try:
+            command = event['content']['body'].split(':')[1].strip()
+        except:
+            command = ''
 
+        try:
+            text = event['content']['body'].split(':')[2].strip()
+        except:
+            text = ''
 
         if command=='نو':
             password = LiveStreamBot.get_password()
