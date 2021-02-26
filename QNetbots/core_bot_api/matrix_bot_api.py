@@ -91,7 +91,8 @@ class MatrixBotAPI:
 
     def handle_invite(self, room_id, state):
         print("Got invite to room: " + str(room_id))
-        if self.room_ids is None or room_id in self.room_ids:
+        print(self.room_ids)
+        if self.room_ids is None or len(self.room_ids)==0 or room_id in self.room_ids:
             print("Joining...")
             room = self.client.join_room(room_id)
 
